@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
+      - name: Build React project
         run: npm run build
 
       - name: Deploy to IONOS via SFTP
@@ -32,3 +32,5 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
           local-dir: dist/
+          server-dir: HillstownEstate/
+          dangerous-clean-slate: false
