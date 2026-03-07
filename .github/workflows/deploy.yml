@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -21,16 +21,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build React project
+      - name: Build project
         run: npm run build
 
-      - name: Deploy to IONOS via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          local-dir: dist/
-          server-dir: HillstownEstate/
-          dangerous-clean-slate: false
+          local_path: dist/*
+          remote_path: /HillstownEstate
