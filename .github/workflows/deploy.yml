@@ -24,12 +24,12 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Upload via SFTP
+        uses: Dylan700/sftp-upload-action@latest
         with:
           server: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          local_path: ./dist
-          remote_path: HillstownEstate
+          uploads: |
+            dist/ => /HillstownEstate
